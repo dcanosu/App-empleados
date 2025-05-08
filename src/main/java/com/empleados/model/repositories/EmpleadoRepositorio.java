@@ -1,16 +1,20 @@
 package com.empleados.model.repositories;
 
 import com.empleados.model.entities.Empleado;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.Repository;
-
 import java.util.List;
+import java.util.Optional;
 
-public interface EmpleadoRepositorio extends Repository<Empleado, Long> {
+public interface EmpleadoRepositorio extends JpaRepository<Empleado, Long> {
 
-    List<Empleado> findAll();
+    // Obtener todos los empleados
 
-    @Query(value = "SELECT * FROM cargos ", nativeQuery = true)
+
+    // Obtener empleados manualmente
+    @Query(value = "SELECT * FROM empleados", nativeQuery = true)
     List<Empleado> obtenerTodosEmpleadosManual();
+
 }
+
 
