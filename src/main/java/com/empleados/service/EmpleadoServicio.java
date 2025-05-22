@@ -12,7 +12,7 @@ public interface EmpleadoServicio {
 
     // Métodos nuevos para CRUD
     Empleado guardarEmpleado(Empleado empleado);
-    Empleado actualizarEmpleado(Long id, Empleado empleado);
+    void actualizarEmpleado(Empleado empleado);
     Optional<Empleado> obtenerEmpleadoPorId(Long id);
     void eliminarEmpleado(Long id);
 }

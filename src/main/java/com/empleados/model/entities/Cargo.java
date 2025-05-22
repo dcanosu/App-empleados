@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 @Entity
 @Setter
 @Getter
-@Builder
+@Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 
@@ -19,7 +19,7 @@ import jakarta.persistence.Table;
 public class Cargo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
     String nombre;
     String descripcion;
 
