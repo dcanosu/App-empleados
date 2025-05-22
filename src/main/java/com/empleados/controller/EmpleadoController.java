@@ -3,6 +3,7 @@ package com.empleados.controller;
 import java.util.List;
 
 import com.empleados.service.EmpleadoServicio;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.empleados.model.entities.Empleado;
@@ -57,14 +58,10 @@ public class EmpleadoController {
     }
 
     // Actualizar un empleado (PUT)
-    @PutMapping("/actualizar/{id}")
-    public String actualizarEmpleado(@PathVariable Long id, @RequestBody Empleado empleado) {
-        Empleado actualizado = empleadoServicio.actualizarEmpleado(id, empleado);
-        if (actualizado != null) {
-            return "Empleado actualizado: " + actualizado.getNombre();
-        } else {
-            return "Error al actualizar el empleado";
-        }
+    @PostMapping("/actualizar")
+    public ResponseEntity<String> actualizarEmpleado(@RequestBody Empleado empleado) {
+       empleadoServicio.actualizarEmpleado(empleado);
+       return ResponseEntity.ok(" Se realizo la accion solicitada " ) ;
     }
 
     // Eliminar un empleado (DELETE)

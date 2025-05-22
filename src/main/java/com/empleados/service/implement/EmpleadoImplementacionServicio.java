@@ -13,7 +13,7 @@ public class EmpleadoImplementacionServicio implements EmpleadoServicio {
 
     private final EmpleadoRepositorio empleadoRepositorio;
 
-    public EmpleadoImplementacionServicio(EmpleadoRepositorio empleadoRepositorio){
+    public EmpleadoImplementacionServicio(EmpleadoRepositorio empleadoRepositorio) {
         this.empleadoRepositorio = empleadoRepositorio;
     }
 
@@ -26,7 +26,8 @@ public class EmpleadoImplementacionServicio implements EmpleadoServicio {
     public List<Empleado> getTodosEmpleadosManual() {
         return empleadoRepositorio.obtenerTodosEmpleadosManual();
     }
-    /////////////////////////////////////////////////////////////
+
+    /// //////////////////////////////////////////////////////////
     // Guardar empleado
     @Override
     public Empleado guardarEmpleado(Empleado empleado) {
@@ -42,19 +43,17 @@ public class EmpleadoImplementacionServicio implements EmpleadoServicio {
     // Actualizar empleado por ID
     // El metodo isPresent() pertenece a la clase Optional en Java. Su función es verificar si el objeto Optional contiene un valor o está vacío.
     @Override
-    public Empleado actualizarEmpleado(Long id, Empleado empleado) {
-        Optional<Empleado> empleadoExistente = empleadoRepositorio.findById(id);
-
-        if (empleadoExistente.isPresent()) {
-            Empleado empleadoActualizado = empleadoExistente.get();
-            empleadoActualizado.setNombre(empleado.getNombre());
-            empleadoActualizado.setApellido(empleado.getApellido());
-            empleadoActualizado.setEmail(empleado.getEmail());
-            empleadoActualizado.setCargo_id(empleado.getCargo_id());
-            return empleadoRepositorio.save(empleadoActualizado);
-        } else {
-            throw new RuntimeException("Empleado no encontrado");
-        }
+    public void actualizarEmpleado(Empleado empleado) {
+        empleadoRepositorio.buscarEmpleadoPorId(empleado.getId())
+                .ifPresent(empleadoActualizable ->{
+                    Empleado empleadoLimpio = empleadoActualizable.toBuilder()
+                            .nombre(empleado.getNombre())
+                            .email(empleado.getEmail())
+                            .apellido(empleado.getApellido())
+                            .cargo_id(empleado.getCargo_id())
+                            .build();
+                    empleadoRepositorio.save(empleadoLimpio);
+        });
     }
 
     // Eliminar empleado por ID

@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 @Entity
 @Setter
 @Getter
-@Builder
+@Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Table (name = "empleados")
@@ -18,11 +18,11 @@ import jakarta.persistence.Table;
 public class Empleado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String nombre;
-    String apellido;
-    String email;
-    Long cargo_id;
+    private Long id;
+    private String nombre;
+    private String apellido;
+    private String email;
+    private Long cargo_id;
 }
 
 

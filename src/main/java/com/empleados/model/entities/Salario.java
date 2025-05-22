@@ -19,7 +19,7 @@ import java.util.Date;
 public class Salario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
     Long empleado_id;
     String apellido;
     Date fecha_pago;
