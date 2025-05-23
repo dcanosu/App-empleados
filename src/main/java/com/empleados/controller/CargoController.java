@@ -28,15 +28,15 @@ public class CargoController {
     }
 
     // Crear un cargo (POST)
-    @PostMapping("/crearcargo")
-    public String crearCargo(@RequestBody Cargo cargo) {
-        try {
-            cargoServicio.crearCargo(cargo);
-            return "Cargo creado con éxito";
-        } catch (Exception e) {
-            return "Error al crear el cargo";
-        }
-    }
+    // @PostMapping("/crearcargo")
+    // public String crearCargo(@RequestBody Cargo cargo) {
+    //     try {
+    //         cargoServicio.crearCargo(cargo);
+    //         return "Cargo creado con éxito";
+    //     } catch (Exception e) {
+    //         return "Error al crear el cargo";
+    //     }
+    // }
 
     // Obtener todos los cargos (GET)
     @GetMapping("/listarcargos")
