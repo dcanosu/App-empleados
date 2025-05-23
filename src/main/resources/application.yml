@@ -1,0 +1,12 @@
+server:
+  port: 9092
+spring:
+  application:
+    name: app-empleados
+  datasource:
+    url: jdbc:mysql://localhost:3306/empleados_db
+    username: root
+    password: 123456789/*
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
